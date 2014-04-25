@@ -1,0 +1,5 @@
+hosts:
+  10.1.2.5:
+    - hostname
+    - another_hostname
+
