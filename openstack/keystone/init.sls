@@ -1,6 +1,3 @@
-include:
-  - populate
-
 keystone:
   pkg:
     - installed
