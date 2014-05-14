@@ -3,3 +3,6 @@ hosts:
     - hostname
     - another_hostname
 
+packages:
+  atom:                                                                              
+    ppa: 'webupd8team/atom'
