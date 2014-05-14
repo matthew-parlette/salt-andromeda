@@ -11,7 +11,6 @@ keystone:
       - file: keystone-conf-connection
       - file: keystone-conf-admin-token
       - file: keystone-conf-log-dir
-      - cmd: keystone-db-sync
 
 {% set keystone_conf = "/etc/keystone/keystone.conf" %}
 
@@ -36,13 +35,5 @@ keystone-conf-log-dir:
     - name: /etc/keystone/keystone.conf
     - pattern: '^#?log_dir\s?=.*$'
     - repl: "log_dir = {{  salt['pillar.get']('openstack:keystone:log_dir','/var/log/keystone') }}"
-    - require:
-      - pkg: keystone
-
-keystone-db-sync:
-  cmd:
-    - run
-    - name: keystone-manage db_sync
-    - user: keystone
     - require:
       - pkg: keystone

@@ -1,9 +1,22 @@
+include:
+  - .init
+
+keystone-db-sync:
+  cmd:
+    - run
+    - name: keystone-manage db_sync
+    - user: keystone
+    - require:
+      - pkg: keystone
+
 keystone-tenants:
   keystone.tenant_present:
     - names:
       {% for tenant in salt['pillar.get']('openstack:tenant',['admin','service']) %}
       - {{ tenant }}
       {% endfor %}
+    - require:
+      - cmd: keystone-db-sync
 
 keystone-roles:
   keystone.role_present:
@@ -11,6 +24,8 @@ keystone-roles:
       {% for role in salt['pillar.get']('openstack:role',['admin','member']) %}
       - {{ role }}
       {% endfor %}
+    - require:
+      - cmd: keystone-db-sync
 
 {% for user in salt['pillar.get']('openstack:user',[]) %}
 {{ user }}:
@@ -34,6 +49,8 @@ keystone-service-{{ service }}:
   keystone.service_present:
     - name: {{ service }}
     - service_type: {{ salt['pillar.get']('openstack:service:' ~ service ~ ':type','') }}
+    - require:
+      - cmd: keystone-db-sync
 
 keystone-endpoints-{{ service }}:
   keystone.endpoint_present:
