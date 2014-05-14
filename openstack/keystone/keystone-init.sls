@@ -1,3 +1,6 @@
+include:
+  - .init
+
 keystone-db-sync:
   cmd:
     - run
@@ -46,6 +49,8 @@ keystone-service-{{ service }}:
   keystone.service_present:
     - name: {{ service }}
     - service_type: {{ salt['pillar.get']('openstack:service:' ~ service ~ ':type','') }}
+    - require:
+      - cmd: keystone-db-sync
 
 keystone-endpoints-{{ service }}:
   keystone.endpoint_present:
