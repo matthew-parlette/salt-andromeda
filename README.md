@@ -28,12 +28,19 @@ Run this again for any changes to the pillar file.
 
 keystone
 --------
+To setup keystone:
+1. Run the salt state for keystone-init
+
+    salt 'server' state.sls salt-andromeda.openstack.keystone.keystone-init
+
+1. Add the keystone sls to the top.sls file
+
 init.sls manages the keystone package, service, and config file. This should go in top.sls:
 
     - salt-andromeda.openstack.keystone
 
-populate.sls adds the users, roles, services, and endpoints.
+keystone-init.sls adds the users, roles, services, and endpoints.
 
-This is not run as a part of highstate, so to populate the database:
+This is not run as a part of highstate, so to initialize the keystone database:
 
-    salt 'server' state.sls salt-andromeda.openstack.keystone.populate
+    salt 'server' state.sls salt-andromeda.openstack.keystone.keystone-init
