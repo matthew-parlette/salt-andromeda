@@ -3,3 +3,11 @@ hosts:
     - hostname
     - another_hostname
 
+packages:
+  atom:                                                                              
+    ppa: 'webupd8team/atom'
+  virtualbox:
+  insync:                                                                                name: deb http://apt.insynchq.com/{{ grains['os'] }} {{ grains['oscodename'] }} $
+    dist: {{ grains['oscodename'] }}                                                 
+    file: /etc/apt/sources.list.d/insync.list                                        
+    key_url: https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key 

@@ -8,6 +8,18 @@ groups
 ======
 Simply define the groups necessary on each system.
 
+packages
+========
+Install packages from:
+
+* Standard Ubuntu packages
+
+* PPA-based packages
+
+* Packages from apt sources
+
+See the pillar.example for specifying the packages. Note that the standard ubuntu packages need to have a trailing colon for everything to work properly.
+
 openstack
 =========
 mysql
