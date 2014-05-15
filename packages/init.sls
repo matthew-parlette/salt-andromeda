@@ -1,9 +1,11 @@
 {% for pkg in salt['pillar.get']('packages', []) %}
-{% set ppa = salt['pillar.get']('packages:' ~ pkg ~ ':ppa', None) %}
+{% set params = salt['pillar.get']('packages:' ~ pkg, None) %}
 {{ pkg }}:
-  {% if ppa %}
+  {% if params %}
   pkgrepo.managed:
-    - ppa: {{ ppa }}
+    {% for key,value in params.iteritems() %}
+    - {{ key }}: {{ value }}
+    {% endfor %}
   pkg.latest:
     - refresh: True
     - require:
