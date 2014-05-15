@@ -8,5 +8,8 @@
     - refresh: True
     - require:
       - pkgrepo: {{ pkg }}
+  {% else %}
+  pkg.latest:
+    - refresh: True
   {% endif %}
 {% endfor %}

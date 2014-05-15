@@ -6,3 +6,4 @@ hosts:
 packages:
   atom:                                                                              
     ppa: 'webupd8team/atom'
+  - virtualbox
