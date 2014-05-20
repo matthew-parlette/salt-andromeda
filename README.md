@@ -53,6 +53,19 @@ init.sls manages the keystone package, service, and config file. This should go 
 
 keystone-init.sls adds the users, roles, services, and endpoints.
 
-This is not run as a part of highstate, so to initialize the keystone database:
+glance
+------
+To setup glance:
+1. Run the salt state for glance-init
 
-    salt 'server' state.sls salt-andromeda.openstack.keystone.keystone-init
+    salt 'server' state.sls salt-andromeda.openstack.glance.glance-init
+
+1. Add the glance sls to the top.sls file
+
+init.sls manages the glance package, service, and config file. This should go in top.sls:
+
+    - salt-andromeda.openstack.glance
+
+glance-init.sls adds the users, roles, services, and endpoints.
+
+For now, the glance module doesn't seem to work (with ubuntu 14.04, openstack icehouse), so glance images must be added on the server (rather than through salt)
