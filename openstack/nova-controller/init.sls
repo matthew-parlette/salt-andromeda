@@ -30,7 +30,7 @@ nova:
 
 nova-{{ storage_type }}-storage:
   file.directory:
-    - name: {{ salt['pillar.get']('openstack:nova:' ~ {{ storage_type }} ~ 'path', '/var/lib/nova/' ~ {{ storage_type }}) }}
+    - name: {{ salt['pillar.get']('openstack:nova:' ~ storage_type ~ 'path', '/var/lib/nova/' ~ storage_type) }}
     - user: nova
     - group: nova
     - mode: 754
