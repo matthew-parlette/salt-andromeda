@@ -47,5 +47,3 @@ nova.conf:
     - template: jinja
     - require:
       - pkg: nova
-    - watch:
-      - service: nova
