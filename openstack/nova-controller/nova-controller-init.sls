@@ -5,7 +5,7 @@ include:
 nova-db-sync:
   cmd:
     - run
-    - name: nova-manage db_sync
+    - name: nova-manage db sync
     - user: nova
     - require:
       - service: mysql-server
