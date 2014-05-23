@@ -26,6 +26,20 @@ nova:
       - nova-scheduler
       - python-novaclient
 
+{% for storage_type in ['instances','volumes'] %}
+
+nova-{{ storage_type }}-storage:
+  file.directory:
+    - name: {{ salt['pillar.get']('openstack:nova:' ~ storage_type ~ '_path', '/var/lib/nova/' ~ storage_type) }}
+    - user: nova
+    - group: nova
+    - mode: 754
+    - recurse:
+      - user
+      - group
+
+{% endfor %}
+
 nova.conf:
   file.managed:
     - name: /etc/nova/nova.conf
