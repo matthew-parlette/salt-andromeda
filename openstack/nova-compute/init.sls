@@ -4,6 +4,8 @@ nova:
     - enable: True
     - names:
       - nova-compute
+      - nova-network
+      - nova-api-metadata
     - require:
       - pkg: nova
       - file: nova-kernel-security
@@ -14,6 +16,8 @@ nova:
     - names:
       - nova-compute-kvm
       - python-guestfs
+      - nova-network
+      - nova-api-metadata
 
 nova-kernel-security:
   file.managed:
