@@ -22,9 +22,6 @@ nova-kernel-security:
     - user: root
     - group: root
     - mode: 655
-  cmd:
-    - run
-    - name: 'dpkg-statoverride  --update --add root root 0644 /boot/vmlinuz-$(uname -r)'
 
 {% for storage_type in ['instances','volumes'] %}
 
