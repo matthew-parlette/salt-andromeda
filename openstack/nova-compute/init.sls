@@ -21,7 +21,7 @@ nova-kernel-security:
     - source: salt://openstack-{{ pillar['openstack']['version'] }}/statoverride
     - user: root
     - group: root
-    - mode: 644
+    - mode: 655
   cmd:
     - run
     - name: 'dpkg-statoverride  --update --add root root 0644 /boot/vmlinuz-$(uname -r)'
