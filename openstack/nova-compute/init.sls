@@ -5,7 +5,6 @@ nova:
     - names:
       - nova-compute
       - nova-network
-      - nova-api-metadata
     - require:
       - pkg: nova
       - file: nova-kernel-security
@@ -17,7 +16,6 @@ nova:
       - nova-compute-kvm
       - python-guestfs
       - nova-network
-      - nova-api-metadata
 
 nova-kernel-security:
   file.managed:
