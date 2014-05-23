@@ -9,7 +9,7 @@ horizon:
       - pkg: horizon
       - pkg: openstack-dashboard-ubuntu-theme
     - watch:
-      - file: localsettings.py
+      - file: local_settings.py
   pkg:
     - installed
     - names:
