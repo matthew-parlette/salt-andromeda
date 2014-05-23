@@ -94,3 +94,21 @@ keystone-init.sls adds the users, roles, services, and endpoints.
 networks were created outside of salt:
 
     nova network-create test-net --bridge br100 --multi-host T --fixed-range-v4 10.0.0.0/24
+
+horizon
+-------
+To setup horizon:
+
+1. Add the horizon sls to the top.sls file
+
+    - salt-andromeda.openstack.horizon
+
+I had to setup apache outside of salt for this to work properly:
+
+    $ sudo a2enmod wsgi
+
+    $ sudo service apache2 restart
+
+    $ sudo a2enconf openstack-dashboard
+
+    $ sudo service apache2 reload
