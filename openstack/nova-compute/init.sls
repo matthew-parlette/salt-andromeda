@@ -7,6 +7,8 @@ nova:
     - require:
       - pkg: nova
       - cmd: nova-kernel-security
+      - file: nova-instances-storage
+      - file: nova-volumes-storage
   pkg:
     - installed
     - names:
