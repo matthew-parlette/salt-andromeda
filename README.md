@@ -41,6 +41,7 @@ Run this again for any changes to the pillar file.
 keystone
 --------
 To setup keystone:
+
 1. Run the salt state for keystone-init
 
     salt 'server' state.sls salt-andromeda.openstack.keystone.keystone-init
@@ -56,6 +57,7 @@ keystone-init.sls adds the users, roles, services, and endpoints.
 glance
 ------
 To setup glance:
+
 1. Run the salt state for glance-init
 
     salt 'server' state.sls salt-andromeda.openstack.glance.glance-init
@@ -66,6 +68,29 @@ init.sls manages the glance package, service, and config file. This should go in
 
     - salt-andromeda.openstack.glance
 
-glance-init.sls adds the users, roles, services, and endpoints.
+keystone-init.sls adds the users, roles, services, and endpoints.
 
 For now, the glance module doesn't seem to work (with ubuntu 14.04, openstack icehouse), so glance images must be added on the server (rather than through salt)
+
+nova-controller
+---------------
+** Incomplete! **
+This state should be applied to the controller
+
+To setup nova-controller:
+
+1. Run the salt state for nova-controller-init
+
+    salt 'server' state.sls salt-andromeda.openstack.nova.nova-controller-init
+
+1. Add the nova-controller sls to the top.sls file
+
+init.sls manages the nova packages, services, and config file. This should go in top.sls:
+
+    - salt-andromeda.openstack.nova-controller
+
+keystone-init.sls adds the users, roles, services, and endpoints.
+
+networks were created outside of salt:
+
+    nova network-create test-net --bridge br100 --multi-host T --fixed-range-v4 10.0.0.0/24
